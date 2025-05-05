@@ -19,7 +19,7 @@ app.use('/personajes', charactersRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
-    res.send('API Harry Potter funcionando ✨');
+    res.send('API Harry Potter funcionando correctamente. Puedes acceder a /peliculas o /personajes para ver los datos.');
 });
 
 app.listen(PORT, () => {

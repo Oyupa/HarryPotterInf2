@@ -22,14 +22,14 @@ router.get('/:id', (req, res) => {
 
 // Crear un nuevo personaje
 router.post('/', (req, res) => {
-    const { name, desc } = req.body;
-    if (!name || !desc) {
+    const { name, description, fuerza, magia, poder, vida } = req.body;
+    if (!name || !description || fuerza == null || magia == null || poder == null || vida == null) {
         return res.status(400).json({ error: 'Faltan campos obligatorios' });
     }
 
     db.query(
-        'INSERT INTO personajes (name, desc) VALUES (?, ?)',
-        [name, desc],
+        'INSERT INTO personajes (name, description, fuerza, magia, poder, vida) VALUES (?, ?, ?, ?, ?, ?)',
+        [name, description, fuerza, magia, poder, vida],
         (err, result) => {
             if (err) return res.status(500).json({ error: 'Error al insertar el personaje' });
             res.status(201).json({ message: 'Personaje creado', id: result.insertId });
@@ -40,11 +40,15 @@ router.post('/', (req, res) => {
 // Actualizar un personaje existente
 router.put('/:id', (req, res) => {
     const { id } = req.params;
-    const { name, desc } = req.body;
+    const { name, description, fuerza, magia, poder, vida } = req.body;
+
+    if (!name || !description || fuerza == null || magia == null || poder == null || vida == null) {
+        return res.status(400).json({ error: 'Faltan campos obligatorios' });
+    }
 
     db.query(
-        'UPDATE personajes SET name = ?, desc = ? WHERE id = ?',
-        [name, desc, id],
+        'UPDATE personajes SET name = ?, description = ?, fuerza = ?, magia = ?, poder = ?, vida = ? WHERE id = ?',
+        [name, description, fuerza, magia, poder, vida, id],
         (err, result) => {
             if (err) return res.status(500).json({ error: 'Error al actualizar el personaje' });
             res.json({ message: 'Personaje actualizado' });
