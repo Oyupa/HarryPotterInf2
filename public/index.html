@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Harry Potter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Interfaz Básica - API Harry Potter</h1>
+
+<h2>Personajes</h2>
+<button onclick="getPersonajes()">Obtener Personajes</button>
+<ul id="personajes-list"></ul>
+
+<h2>Combates</h2>
+<button onclick="getCombates()">Obtener Combates</button>
+<ul id="combates-list"></ul>
+
+<h2>Crear Personaje</h2>
+<form id="create-character-form">
+    <input type="text" id="character-name" placeholder="Nombre" required />
+    <input type="text" id="character-description" placeholder="Descripción" required />
+    <button type="submit">Crear Personaje</button>
+</form>
+
+<h2>Crear Combate</h2>
+<form id="create-combat-form">
+    <input type="number" id="personaje1-id" placeholder="ID Personaje 1" required />
+    <input type="number" id="personaje2-id" placeholder="ID Personaje 2" required />
+    <input type="number" id="ganador-id" placeholder="ID Ganador" required />
+    <button type="submit">Crear Combate</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>

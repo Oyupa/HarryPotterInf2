@@ -5,6 +5,7 @@ const cors = require('cors');
 const db = require('./config/db');
 const moviesRoutes = require('./routes/moviesRoutes');
 const charactersRoutes = require('./routes/charactersRoutes');
+const combatesRoutes = require('./routes/combatesRoutes');
 
 const app = express();
 const PORT = 3000;
@@ -12,10 +13,13 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bearerToken());
+app.use(express.static('public'));
+
 
 // Rutas de la API
 app.use('/peliculas', moviesRoutes);
 app.use('/personajes', charactersRoutes);
+app.use('/combates', combatesRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
